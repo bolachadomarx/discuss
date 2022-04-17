@@ -2,7 +2,12 @@
 <ul class="collection">
   <%= for topic <- @topics do %>
     <li class="collection-item">
-      <%= topic.title %> - <%= topic.inserted_at %>
+      <%= topic.title %> - <%= topic.inserted_at %> - 
+      <div class="right">
+        <%= link to: Routes.topic_path(@conn, :edit, topic.id), class: "btn-floating btn-small waves-effect waves-light blue" do %>
+          <i class="material-icons">edit</i>
+        <% end %>
+      </div>
     </li>
   <% end %>
 </ul>
