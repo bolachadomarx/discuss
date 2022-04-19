@@ -8,17 +8,13 @@ defmodule DiscussWeb.AuthController do
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider}) do
     user_params = %{token: auth.credentials.token, email: auth.info.email, provider: provider}
     changeset = User.changeset(%User{}, user_params)
-
     signin(conn, changeset)
-    # case Repo.insert(changeset) do
-    #   {:ok, _post} ->
-    #     conn
-    #     |> put_flash(:info, "Topic Created")
-    #     |> redirect(to: Routes.topic_path(conn, :index))
+  end
 
-    #   {:error, changeset} ->
-    #     render(conn, "new.html", changeset: changeset)
-    # end
+  def signout(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: Routes.topic_path(conn, :index))
   end
 
   defp signin(conn, changeset) do
