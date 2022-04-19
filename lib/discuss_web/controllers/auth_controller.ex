@@ -25,7 +25,7 @@ defmodule DiscussWeb.AuthController do
     case insert_or_update_user(changeset) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "SalvÊ")
+        |> put_flash(:info, "Usuário logado com sucesso!")
         |> put_session(:user_id, user.id)
         |> redirect(to: Routes.topic_path(conn, :index))
       {:error, _reason } ->
