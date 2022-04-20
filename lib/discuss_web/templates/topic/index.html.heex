@@ -2,15 +2,18 @@
 <ul class="collection">
   <%= for topic <- @topics do %>
     <li class="collection-item">
-      <%= topic.title %> - <%= topic.inserted_at %> - 
-      <div class="right">
-        <%= link to: Routes.topic_path(@conn, :edit, topic), class: "btn-floating btn-small waves-effect waves-light blue" do %>
-          <i class="material-icons">edit</i>
-        <% end %>
-        <%= link to: Routes.topic_path(@conn, :delete, topic), class: "btn-floating btn-small waves-effect waves-light red", method: :delete do %>
-          <i class="material-icons">delete</i>
-        <% end %>
-      </div>
+      <%= topic.title %> - <%= topic.inserted_at %>
+
+      <%= if @conn.assigns.user && @conn.assigns.user.id == topic.user_id do %>
+        <div class="right">
+          <%= link to: Routes.topic_path(@conn, :edit, topic), class: "btn-floating btn-small waves-effect waves-light blue" do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+          <%= link to: Routes.topic_path(@conn, :delete, topic), class: "btn-floating btn-small waves-effect waves-light red", method: :delete do %>
+            <i class="material-icons">delete</i>
+          <% end %>
+        </div>
+      <% end %>
     </li>
   <% end %>
 </ul>
