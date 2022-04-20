@@ -1,14 +1,11 @@
-defmodule Discuss.User do
+defmodule Discuss.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "users" do
-    field :email, :string
-    field :provider, :string
-    field :token, :string
-    has_many :topics, Discuss.Topic
-    has_many :comments, Discuss.Comment
-
+  schema "comments" do
+    field :conent, :string
+    belongs_to :topic, Discuss.Topic
+    belongs_to :user, Discuss.User
     timestamps()
   end
 
