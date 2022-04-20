@@ -4,6 +4,12 @@ defmodule DiscussWeb.Endpoint do
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
+
+  socket "/socket", DiscussWeb.UserSocket,
+  websocket: true,
+  longpoll: false
+
+
   @session_options [
     store: :cookie,
     key: "_discuss_key",
